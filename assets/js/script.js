@@ -21,31 +21,30 @@ var questions = [
         correctAnswer: 'document.write("Hello World")',
     },
     {
-        question: 'Which programming language is used for web development?',
-        choices: ['Java', 'Python', 'JavaScript', 'C++'],
-        correctAnswer: 'JavaScript',
+        question: 'An external Javascript must contain the <script> tag?',
+        choices: ['True', 'False'],
+        correctAnswer: 'False',
     },
     {
-        question: 'Which programming language is used for web development?',
-        choices: ['Java', 'Python', 'JavaScript', 'C++'],
-        correctAnswer: 'JavaScript',
+        question: 'How can you add a comment in a JavaScript?',
+        choices: ['"Comment"', '//Comment', '!Comment', 'Whats a comment'],
+        correctAnswer: '//Comment',
     },
     {
-        question: 'Which programming language is used for web development?',
-        choices: ['Java', 'Python', 'JavaScript', 'C++'],
-        correctAnswer: 'JavaScript',
+        question: 'Which HTML attribute is used to define inline styles?',
+        choices: ['Style', 'Font', 'Class', 'Styles'],
+        correctAnswer: 'Style',
     },
     {
-        question: 'Which programming language is used for web development?',
-        choices: ['Java', 'Python', 'JavaScript', 'C++'],
-        correctAnswer: 'JavaScript',
+        question: 'Which is the correct CSS syntax?',
+        choices: ['body {color:black}', '{body;color:black}', 'body:color=black', '{body:color=black(body}'],
+        correctAnswer: 'body {color:black}',
     },
     {
-        question: 'Which programming language is used for web development?',
-        choices: ['Java', 'Python', 'JavaScript', 'C++'],
+        question: 'To define a style sheet, you need to?',
+        choices: ['specify each property and its corresponding value', 'associate property-value pairs to dedicated HTML tag', 'Both A & B', 'None of the above'],
         correctAnswer: 'JavaScript',
     },
-    // Add more questions here
 ];
 
 const quizDurationSeconds = 60;
