@@ -6,9 +6,39 @@ var highScoresList = document.getElementById('high-scores');
 
 var questions = [
     {
-        question: 'What is the capital of France?',
-        choices: ['Madrid', 'Rome', 'Paris', 'Berlin'],
-        correctAnswer: 'Paris',
+        question: 'Inside which HTML element do we put the Javascript?',
+        choices: ['<js>', '<javascript>', '<script>', '<scripting>'],
+        correctAnswer: '<script>',
+    },
+    {
+        question: 'Which programming language is used for web development?',
+        choices: ['Java', 'Python', 'JavaScript', 'C++'],
+        correctAnswer: 'JavaScript',
+    },
+    {
+        question: 'What is the correct Javascript syntax to write "Hello World?" ',
+        choices: ['response("Hello World")', '"Hello World"', 'document.write("Hello World")', 'Idk'],
+        correctAnswer: 'document.write("Hello World")',
+    },
+    {
+        question: 'Which programming language is used for web development?',
+        choices: ['Java', 'Python', 'JavaScript', 'C++'],
+        correctAnswer: 'JavaScript',
+    },
+    {
+        question: 'Which programming language is used for web development?',
+        choices: ['Java', 'Python', 'JavaScript', 'C++'],
+        correctAnswer: 'JavaScript',
+    },
+    {
+        question: 'Which programming language is used for web development?',
+        choices: ['Java', 'Python', 'JavaScript', 'C++'],
+        correctAnswer: 'JavaScript',
+    },
+    {
+        question: 'Which programming language is used for web development?',
+        choices: ['Java', 'Python', 'JavaScript', 'C++'],
+        correctAnswer: 'JavaScript',
     },
     {
         question: 'Which programming language is used for web development?',
@@ -18,3 +48,82 @@ var questions = [
     // Add more questions here
 ];
 
+const quizDurationSeconds = 60;
+let currentQuestionIndex = 0;
+let timer;
+let score = 0;
+
+startButton.addEventListener('click', startQuiz);
+
+function startQuiz() {
+    startButton.disabled = true;
+    timer = setInterval(updateTimer, 1000);
+    showQuestion();
+}
+
+function updateTimer() {
+    quizDurationSeconds--;
+    timerElement.textContent = quizDurationSeconds;
+
+    if (quizDurationSeconds <= 0) {
+        clearInterval(timer);
+        endQuiz();
+    }
+}
+
+function showQuestion() {
+    if (currentQuestionIndex < questions.length) {
+        const currentQuestion = questions[currentQuestionIndex];
+        questionContainer.textContent = currentQuestion.question;
+
+        choicesContainer.innerHTML = '';
+
+        currentQuestion.choices.forEach((choice) => {
+            const choiceButton = document.createElement('button');
+            choiceButton.textContent = choice;
+            choiceButton.addEventListener('click', () => checkAnswer(choice, currentQuestion.correctAnswer));
+            choicesContainer.appendChild(choiceButton);
+        });
+    } else {
+        endQuiz();
+    }
+}
+
+function checkAnswer(selectedAnswer, correctAnswer) {
+    if (selectedAnswer === correctAnswer) {
+        score++;
+    } else {
+        quizDurationSeconds -= 10; // Subtract 10 seconds for a wrong answer
+    }
+
+    currentQuestionIndex++;
+    showQuestion();
+}
+
+function endQuiz() {
+    clearInterval(timer);
+    questionContainer.textContent = 'Quiz Over!';
+    choicesContainer.innerHTML = '';
+
+    // Store and display the high score
+    const playerName = prompt('Enter your name:');
+    const highScore = { name: playerName, score: score };
+    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+    highScores.push(highScore);
+    highScores.sort((a, b) => b.score - a.score);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+
+    displayHighScores();
+}
+
+function displayHighScores() {
+    highScoresList.innerHTML = '';
+    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+    highScores.forEach((score, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${index + 1}. ${score.name}: ${score.score}`;
+        highScoresList.appendChild(li);
+    });
+}
