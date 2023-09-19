@@ -43,11 +43,11 @@ var questions = [
     {
         question: 'To define a style sheet, you need to?',
         choices: ['specify each property and its corresponding value', 'associate property-value pairs to dedicated HTML tag', 'Both A & B', 'None of the above'],
-        correctAnswer: 'JavaScript',
+        correctAnswer: 'Both A & B',
     },
 ];
 
-const quizDurationSeconds = 60;
+var quizDurationSeconds = 60;
 let currentQuestionIndex = 0;
 let timer;
 let score = 0;
@@ -72,13 +72,13 @@ function updateTimer() {
 
 function showQuestion() {
     if (currentQuestionIndex < questions.length) {
-        const currentQuestion = questions[currentQuestionIndex];
+        var currentQuestion = questions[currentQuestionIndex];
         questionContainer.textContent = currentQuestion.question;
 
         choicesContainer.innerHTML = '';
 
         currentQuestion.choices.forEach((choice) => {
-            const choiceButton = document.createElement('button');
+            var choiceButton = document.createElement('button');
             choiceButton.textContent = choice;
             choiceButton.addEventListener('click', () => checkAnswer(choice, currentQuestion.correctAnswer));
             choicesContainer.appendChild(choiceButton);
@@ -105,9 +105,9 @@ function endQuiz() {
     choicesContainer.innerHTML = '';
 
     // Store and display the high score
-    const playerName = prompt('Enter your name:');
-    const highScore = { name: playerName, score: score };
-    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    var playerName = prompt('Enter your name:');
+    var highScore = { name: playerName, score: score };
+    var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
     highScores.push(highScore);
     highScores.sort((a, b) => b.score - a.score);
@@ -118,10 +118,10 @@ function endQuiz() {
 
 function displayHighScores() {
     highScoresList.innerHTML = '';
-    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
     highScores.forEach((score, index) => {
-        const li = document.createElement('li');
+        var li = document.createElement('li');
         li.textContent = `${index + 1}. ${score.name}: ${score.score}`;
         highScoresList.appendChild(li);
     });
