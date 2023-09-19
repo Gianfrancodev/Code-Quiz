@@ -92,7 +92,7 @@ function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         score++;
     } else {
-        quizDurationSeconds -= 10; // Subtract 10 seconds for a wrong answer
+        quizDurationSeconds -= 10; 
     }
 
     currentQuestionIndex++;
@@ -104,7 +104,6 @@ function endQuiz() {
     questionContainer.textContent = 'Quiz Over!';
     choicesContainer.innerHTML = '';
 
-    // Store and display the high score
     var playerName = prompt('Enter your name:');
     var highScore = { name: playerName, score: score };
     var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
